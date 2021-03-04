@@ -1,0 +1,22 @@
+{
+  "name": "url-shortner-amit",
+  "version": "1.0.0",
+  "description": "URL shortner(without cyber4s template",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amit751/URL-shortner-amit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amit751/URL-shortner-amit/issues"
+  },
+  "homepage": "https://github.com/amit751/URL-shortner-amit#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}

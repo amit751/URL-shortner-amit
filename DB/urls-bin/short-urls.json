@@ -1,0 +1,59 @@
+{
+    "AMIT": 1,
+    "https//totyob.com": {
+        "creationDate": "test",
+        "redirectCount": 0,
+        "originalUrl": "https//totyob.com",
+        "shorturl": "http://localhost:3000/short34",
+        "id": 34
+    },
+    "https://www.youtube.com/watch?v=odisBtSp1sQ": {
+        "creationDate": "2021-03-04T17:31:57.869Z",
+        "redirectCount": 0,
+        "originalUrl": "https://www.youtube.com/watch?v=odisBtSp1sQ",
+        "shorturl": "http://localhost:3000/short35",
+        "id": 35
+    },
+    "https://translate.google.co.il/?hl=iw&tab=wT": {
+        "creationDate": "2021-03-04T17:37:12.146Z",
+        "redirectCount": 0,
+        "originalUrl": "https://translate.google.co.il/?hl=iw&tab=wT",
+        "shorturl": "http://localhost:3000/short/36",
+        "id": 36
+    },
+    "https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file": {
+        "creationDate": "2021-03-04T17:58:59.661Z",
+        "redirectCount": 0,
+        "originalUrl": "https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file",
+        "shorturl": "http://localhost:3000/short/37",
+        "id": 37
+    },
+    "https://www.youtube.com/watch?v=IGFdJxkJRC0&list=PLyuRouwmQCjne87u8XUdOM5oCl7vI2vVL&index=3": {
+        "creationDate": "2021-03-04T18:01:49.518Z",
+        "redirectCount": 0,
+        "originalUrl": "https://www.youtube.com/watch?v=IGFdJxkJRC0&list=PLyuRouwmQCjne87u8XUdOM5oCl7vI2vVL&index=3",
+        "shorturl": "http://localhost:3000/short/38",
+        "id": 38
+    },
+    "https://git-scm.com/download/win": {
+        "creationDate": "2021-03-04T18:04:08.168Z",
+        "redirectCount": 0,
+        "originalUrl": "https://git-scm.com/download/win",
+        "shorturl": "http://localhost:3000/short/39",
+        "id": 39
+    },
+    "http://course.suvelocity.org/": {
+        "creationDate": "2021-03-04T18:07:34.557Z",
+        "redirectCount": 0,
+        "originalUrl": "http://course.suvelocity.org/",
+        "shorturl": "http://localhost:3000/40",
+        "id": 40
+    },
+    "https://www.youtube.com/": {
+        "creationDate": "2021-03-04T18:08:35.563Z",
+        "redirectCount": 0,
+        "originalUrl": "https://www.youtube.com/",
+        "shorturl": "http://localhost:3000/41",
+        "id": 41
+    }
+}

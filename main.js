@@ -81,32 +81,33 @@ class Db{
     constructor(){
 
     }
-    writeFILE(FILEpATH , ){
+    writeFile(filePath , data ){
+        return new Promise((resolve ,reject)=>{
+            fs.writeFile( filePath , data ,'utf8', (err)=>{
+               if(err){
+                   console.log("wile fs.writefile");
+                   reject(err)
+               }else{
+                   resolve(true)
+               } 
+            });
+         
+         });   
 
     }
     readFile(filePath){
         return new Promise((resolve ,reject)=>{
             fs.readFile(filePath , 'utf8', (err, data)=>{
                if(err){
-                   reject(err , "wile fs.readfile" )
+                   console.log("wile fs.readfile");
+                   reject(err )
                }else{
                    resolve(data)
                } 
             });
          
          }); 
-        // console.log("path" , filePath);
-        // fs.readFile(filePath , 'utf8', (err, data)=>{
-        //    if(err){
-        //        console.log(err , "wile fs.readfile");
-        //    }
-        //    console.log("data" , data);
-          
-
-        //    return data; });
-        // }).then((data)=>{
-        //     return data;
-        // })
+        
     }
     
     // READCOUNTER()
@@ -115,23 +116,9 @@ class Db{
 }
 dataBase = new Db;
 
-dataBase.readFile(`./DB/urls-bin/short-urls.json`).then((data)=>{
-    console.log("inside then" , data);
+dataBase.writeFile(`./DB/urls-bin/test.json`, JSON.stringify({data: "test"} , null, 4)).then((result)=>{
+    if (result){
+        dataBase.readFile(`./DB/urls-bin/test.json`).then((data)=>{console.log(data);});
+    }
 });
 
-// return new Promise((resolve ,reject)=>{
-//    resolve( fs.readFile(filePath , 'utf8', (err, data)=>{
-       
-//    }))
-
-// }); 
-// return new Promise((resolve ,reject)=>{
-//     fs.readFile(filePath , 'utf8', (err, data)=>{
-//        if(err){
-//            reject(err , "wile fs.readfile" )
-//        }else{
-//            resolve(data)
-//        } 
-//     });
- 
-//  }); 

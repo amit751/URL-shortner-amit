@@ -12,5 +12,12 @@
         "originalUrl": "https://www.w3schools.com/php/php_intro.asp",
         "shorturl": "http://localhost:3000/68",
         "id": 68
+    },
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all": {
+        "creationDate": "2021-03-05T19:49:08.505Z",
+        "redirectCount": 0,
+        "originalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
+        "shorturl": "http://localhost:3000/69",
+        "id": 69
     }
 }

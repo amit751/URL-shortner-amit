@@ -7,21 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <input id="input" type="text">url:</input>
-    <button id="button">post</button>
-    <script src="./index.js"></script>
-    <form action="http://localhost:3000" method="POST">
+    <!-- <input id="input" type="text">url:</input>
+    <button id="button">post</button> -->
+    <form action="http://localhost:3000/urlshorts" method="POST">
         <fieldset>
-          <legend>URL Shortener</legend>
-          <label for="url_input">URL:</label>
-          <input
+            <legend>URL Shortener</legend>
+            <label for="url_input">URL:</label>
+            <input
+            required
             id="url_input"
-            type="text"
+            type="url"
             name="url"
             placeholder="https://www.freecodecamp.org/"
-          />
-          <input type="submit" value="POST URL" />
+            />
+            <input id="submit-button" type="submit" value="POST URL" />
         </fieldset>
-      </form>
+    </form>
+    <script src="./index.js"></script>
 </body>
 </html>

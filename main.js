@@ -3,6 +3,7 @@ const express = require("express");
 const fetch = require('node-fetch');
 const fs = require("fs");
 const cors = require("cors");
+const { resolve } = require("path");
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
@@ -15,6 +16,9 @@ app.listen( 3000 , ()=>{
     console.log("listen at 3000")
 });
 app.use(express.json());
+
+
+
 
 
 app.post("/" , (req , res)=>{
@@ -72,3 +76,62 @@ app.get ("/:id" , (request , response)=>{
     response.redirect(301 , originalUrl);
     
 });
+
+class Db{
+    constructor(){
+
+    }
+    writeFILE(FILEpATH , ){
+
+    }
+    readFile(filePath){
+        return new Promise((resolve ,reject)=>{
+            fs.readFile(filePath , 'utf8', (err, data)=>{
+               if(err){
+                   reject(err , "wile fs.readfile" )
+               }else{
+                   resolve(data)
+               } 
+            });
+         
+         }); 
+        // console.log("path" , filePath);
+        // fs.readFile(filePath , 'utf8', (err, data)=>{
+        //    if(err){
+        //        console.log(err , "wile fs.readfile");
+        //    }
+        //    console.log("data" , data);
+          
+
+        //    return data; });
+        // }).then((data)=>{
+        //     return data;
+        // })
+    }
+    
+    // READCOUNTER()
+    // UPDATECOUNTER()
+
+}
+dataBase = new Db;
+
+dataBase.readFile(`./DB/urls-bin/short-urls.json`).then((data)=>{
+    console.log("inside then" , data);
+});
+
+// return new Promise((resolve ,reject)=>{
+//    resolve( fs.readFile(filePath , 'utf8', (err, data)=>{
+       
+//    }))
+
+// }); 
+// return new Promise((resolve ,reject)=>{
+//     fs.readFile(filePath , 'utf8', (err, data)=>{
+//        if(err){
+//            reject(err , "wile fs.readfile" )
+//        }else{
+//            resolve(data)
+//        } 
+//     });
+ 
+//  }); 

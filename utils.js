@@ -23,7 +23,7 @@ function readFileSUCSESS(counterData , bin , url , res){
     .then((resultfromurl)=>{
         dataBase11.writeFile(`${dir}/id-genrator.json` , JSON.stringify({counter : newID }))
         .then((resultfromcounter)=>{
-            return res.json( bin[url]).status(200); //status undifined 
+            return res.status(200).json( bin[url]); //status undifined 
         });//added; 
     }).catch((err)=>{
         console.log("db.writefile faild could not save to db");
@@ -40,10 +40,10 @@ function readFileFail(err , res){
 function onFullfild(data ,url , res){
     const bin = JSON.parse(data);
     if(url in bin){
-        res.send(bin[url].shorturl).status(200);
+        res.status(200).send(bin[url].shorturl);
         return;
     }if(url === false){
-        res.json({url : `${url} isnot valid` }).status(200);
+        res.status(200).json({url : `${url} isnot valid` });
     }
     return fetch(url)
     .then((response)=>{
@@ -57,12 +57,12 @@ function onFullfild(data ,url , res){
             return;
              
         }else{
-            res.status(200).send("invalid website");
+            res.status(202).send("invalid website");
             return;  
         }
     }).catch((e)=>{
         console.log(e , `couldnt fetch to${url}`);
-        return res.status(200).send("invalid website");/////status
+        return res.status(200).send(`couldnt fetch to${url}`);/////status
          
     });
 }

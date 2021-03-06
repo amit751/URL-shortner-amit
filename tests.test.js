@@ -2,7 +2,7 @@ const app = require(`./main.js`);
 const supertest = require('supertest');
 const request = supertest(app);
 const { test, expect } = require("@jest/globals");
-
+const fs = require("fs");
 
 describe( "post method" ,  ()=>{
     test("shorturl already exist in the database" , async ()=>{
@@ -10,16 +10,34 @@ describe( "post method" ,  ()=>{
       .send({url: "https://stackabuse.com/how-to-use-module-exports-in-node-js/" })
       .type("form");
       expect(response.status).toEqual(200);
-      expect(response.text).toEqual("http://localhost:3000/81");  
+      expect(response.text).toEqual("http://localhost:3000/81");
+        
     });
     test("invalid url-there is no such website" , async ()=>{
         const response = await request.post("/urlshorts")
         .send({url: "https://stackabuse.com/33333ports-in-node556/32f" })
         .type("form");
+        expect(response.status).toEqual(202);
+        expect(response.text).toEqual("invalid website");  
+        
+        
+    });
+    test("able to post a new url" , async ()=>{
+        const response = await request.post("/urlshorts")
+        .send({url: "https://www.youtube.com/watch?v=iYYRH4apXDo" })
+        .type("form");
+        // const currentid = JSON.parse(fs.readFileSync("./DB-TEST/id-genrator.json")).counter;
+        // const nextID = currentid-1;
+        let currentBin = JSON.parse(fs.readFileSync("./DB-TEST/urls-bin/short-urls.json"));
+        const expected = currentBin["https://www.youtube.com/watch?v=iYYRH4apXDo"]
+        delete currentBin["https://www.youtube.com/watch?v=iYYRH4apXDo"];
+        fs.writeFileSync("./DB-TEST/urls-bin/short-urls.json" ,JSON.stringify(currentBin, null, 4) );
         expect(response.status).toEqual(200);
-        expect(response.text).toEqual("http://localhost:3000/81");  
-      });
-
+        expect(response.body).toEqual(expected);  
+        
+        
+    });
+      
 });
 
 

@@ -4,26 +4,24 @@ const fetch = require('node-fetch');
 const fs = require("fs");
 const cors = require("cors");
 const app = express();
-
-app.use(express.urlencoded({extended: true}));
-app.use(express.static('DB/urls-bin'));
-
 const {onFullfild , readFileFail , readFileSUCSESS } = require("./utils.js");
 const Db = require("./DBclass.js");
 
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('DB/urls-bin'));///not in use
 app.use(cors()); 
 app.listen( 3000 , ()=>{
-    console.log("listen at 3000")
+    console.log("listen at 3000");
 });
 app.use(express.json());
 
 
-dataBase = new Db;
+const dataBase = new Db;
+
 
 app.get ("/:id" , (request , response)=>{
     console.log( "inside get");
-    // console.log(request.params);
-    // let params = request.params
     const { id } = request.params;
     dataBase.readFile(`./DB/urls-bin/short-urls.json`)
     .then((data)=>{
@@ -33,34 +31,27 @@ app.get ("/:id" , (request , response)=>{
             const urlPROP = bin[prop]
             if(urlPROP.id === Number(id) ){
               originalUrl = urlPROP.originalUrl;
+              urlPROP.redirectCount++ ; 
             }
         }if(!originalUrl){
             throw new Error("not found-there is not such url");
         }
         response.redirect(303 , originalUrl); 
-        return;
+        dataBase.writeFile(`./DB/urls-bin/short-urls.json` ,  JSON.stringify(bin , null, 4))
+        .then((result)=>{
+            console.log("counter updated sucsesfuly" );
+            return;
+        }).catch((error)=>{
+            console.log( error , "counter failed to update");
+        })
+        // return;
+
     })
     .catch((err)=>{
         res.json(err);
         return;
-    })
-    // console.log(id);
-    // const bin = JSON.parse(fs.readFileSync(`./DB/urls-bin/short-urls.json`));
-    // let originalUrl = false;
-    // // console.log(bin);
-   
-    // for (const prop in bin) {
-    //   const urlPROP = bin[prop]
-    //   if(urlPROP.id === Number(id) ){
-    //     originalUrl = urlPROP.originalUrl;
-    //   }
-    // }
-    // console.log(":origin url" , originalUrl);
-    // if(!originalUrl){
-    //     throw new Error("not found");
-        
-    // }
-    // response.redirect(303 , originalUrl);
+    });
+
     return;
     
 });
@@ -81,10 +72,32 @@ app.post("/urlshorts" , (req , res)=>{
 });
 
 
+app.get("/statistic/:id" , (req , res)=>{
+    const id = req.params.id;
+    dataBase.readFile(`./DB/urls-bin/short-urls.json`)
+    .then((data)=>{
+        const bin = JSON.parse(data);
+        let urlStatistic = false;
+        for (const url in bin) {
+            const urlOBJ = bin[url];
+            if(urlOBJ.id === Number(id) ){
+                urlStatistic = urlOBJ;
+            }
+        }if(!urlStatistic){
+            console.log("there is no such short url in db");
+            res.status(200).send("not found-there is not such url");
+        }
+        return res.status(200).json(urlStatistic);
+       
+    }).catch((err)=>{
+        console.log("couldnt read data from db");
+        return res.status(200).send(err , "couldnt read data from db");
+    });
+
+});
 
 
-
-
+// module.exports = {dataBase};
 
 
 

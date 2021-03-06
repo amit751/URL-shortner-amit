@@ -1,93 +1,16 @@
 {
     "https://www.youtube.com/watch?v=vtsvokdIqwY": {
         "creationDate": "2021-03-05T18:21:38.099Z",
-        "redirectCount": 0,
+        "redirectCount": 5,
         "originalUrl": "https://www.youtube.com/watch?v=vtsvokdIqwY",
         "shorturl": "http://localhost:3000/67",
         "id": 67
     },
-    "https://www.w3schools.com/php/php_intro.asp": {
-        "creationDate": "2021-03-05T18:25:00.730Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.w3schools.com/php/php_intro.asp",
-        "shorturl": "http://localhost:3000/68",
-        "id": 68
-    },
-    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all": {
-        "creationDate": "2021-03-05T19:49:08.505Z",
-        "redirectCount": 0,
-        "originalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
-        "shorturl": "http://localhost:3000/69",
-        "id": 69
-    },
-    "https://www.youtube.com/watch?v=4kgoEphreRc": {
-        "creationDate": "2021-03-05T19:59:52.645Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=4kgoEphreRc",
-        "shorturl": "http://localhost:3000/70",
-        "id": 70
-    },
-    "https://www.youtube.com/watch?v=Mj3QejzYZ70": {
-        "creationDate": "2021-03-05T20:02:36.977Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=Mj3QejzYZ70",
-        "shorturl": "http://localhost:3000/71",
-        "id": 71
-    },
-    "https://www.youtube.com/watch?v=vWNa15pjzi4": {
-        "creationDate": "2021-03-05T20:03:55.044Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=vWNa15pjzi4",
-        "shorturl": "http://localhost:3000/72",
-        "id": 72
-    },
-    "https://github.com/amit751/Cyber4s-Documentation/commit/03729d428136cbf47e781405ec02f1f6fe34312d": {
-        "creationDate": "2021-03-05T20:18:21.445Z",
-        "redirectCount": 0,
-        "originalUrl": "https://github.com/amit751/Cyber4s-Documentation/commit/03729d428136cbf47e781405ec02f1f6fe34312d",
-        "shorturl": "http://localhost:3000/74",
-        "id": 74
-    },
-    "https://www.youtube.com/watch?v=CJJtA1NTqN4": {
-        "creationDate": "2021-03-05T20:34:52.629Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=CJJtA1NTqN4",
-        "shorturl": "http://localhost:3000/75",
-        "id": 75
-    },
-    "https://www.youtube.com/watch?v=U7eGCZAfDyU": {
-        "creationDate": "2021-03-05T20:39:20.137Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=U7eGCZAfDyU",
-        "shorturl": "http://localhost:3000/76",
-        "id": 76
-    },
-    "https://www.youtube.com/watch?v=btFsjiugudk": {
-        "creationDate": "2021-03-05T20:41:29.883Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=btFsjiugudk",
-        "shorturl": "http://localhost:3000/77",
-        "id": 77
-    },
-    "https://www.youtube.com/watch?v=9ODGKI_VAmE": {
-        "creationDate": "2021-03-05T20:43:09.585Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.youtube.com/watch?v=9ODGKI_VAmE",
-        "shorturl": "http://localhost:3000/78",
-        "id": 78
-    },
-    "https://www.tutorialsteacher.com/nodejs/nodejs-module-exports": {
-        "creationDate": "2021-03-05T22:28:00.963Z",
-        "redirectCount": 0,
-        "originalUrl": "https://www.tutorialsteacher.com/nodejs/nodejs-module-exports",
-        "shorturl": "http://localhost:3000/79",
-        "id": 79
-    },
-    "https://express-validator.github.io/docs/check-api.html": {
-        "creationDate": "2021-03-05T23:59:17.502Z",
-        "redirectCount": 0,
-        "originalUrl": "https://express-validator.github.io/docs/check-api.html",
-        "shorturl": "http://localhost:3000/80",
-        "id": 80
+    "https://stackabuse.com/how-to-use-module-exports-in-node-js/": {
+        "creationDate": "6-3-2021  14:31:09",
+        "redirectCount": 1,
+        "originalUrl": "https://stackabuse.com/how-to-use-module-exports-in-node-js/",
+        "shorturl": "http://localhost:3000/81",
+        "id": 81
     }
 }

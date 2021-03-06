@@ -1,7 +1,10 @@
 const express = require("express");
 const fetch = require('node-fetch');
 const fs = require("fs");
+// const {dataBase} = require("./main.js");
+const Db = require("./DBclass.js");
 
+const dataBase11 = new Db;
 
 
 
@@ -9,16 +12,16 @@ function readFileSUCSESS(counterData , bin , url , res){
     console.log("here res" );
     let newID = JSON.parse(counterData).counter; 
     bin[url] = {
-        creationDate : new Date() ,
+        creationDate : new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ,
         redirectCount :  0 ,
         originalUrl : url,
         shorturl : `http://localhost:3000/${newID}` ,
         id : newID
     };
     ++newID;
-    dataBase.writeFile(`./DB/urls-bin/short-urls.json` , JSON.stringify(bin , null, 4))
+    dataBase11.writeFile(`./DB/urls-bin/short-urls.json` , JSON.stringify(bin , null, 4))
     .then((resultfromurl)=>{
-        dataBase.writeFile(`./DB/id-genrator.json` , JSON.stringify({counter : newID }))
+        dataBase11.writeFile(`./DB/id-genrator.json` , JSON.stringify({counter : newID }))
         .then((resultfromcounter)=>{
             return res.json( bin[url]).status(200); //status undifined 
         });//added; 
@@ -45,7 +48,7 @@ function onFullfild(data ,url , res){
     return fetch(url)
     .then((response)=>{
         if(response.ok){
-            dataBase.readFile(`./DB/id-genrator.json`)
+            dataBase11.readFile(`./DB/id-genrator.json`)
             .then((counterData)=>{
                 readFileSUCSESS(counterData , bin , url , res);
             } , (err)=>{
@@ -58,11 +61,11 @@ function onFullfild(data ,url , res){
             return;  
         }
     }).catch((e)=>{
-        console.log(`couldnt fetch to${url}`);
+        console.log(e , `couldnt fetch to${url}`);
         return res.send("invalid website");
          
     });
 }
 
-
+// `couldnt fetch to${url}`
 module.exports = {onFullfild , readFileFail , readFileSUCSESS };

@@ -75,5 +75,19 @@
         "originalUrl": "https://www.youtube.com/watch?v=9ODGKI_VAmE",
         "shorturl": "http://localhost:3000/78",
         "id": 78
+    },
+    "https://www.tutorialsteacher.com/nodejs/nodejs-module-exports": {
+        "creationDate": "2021-03-05T22:28:00.963Z",
+        "redirectCount": 0,
+        "originalUrl": "https://www.tutorialsteacher.com/nodejs/nodejs-module-exports",
+        "shorturl": "http://localhost:3000/79",
+        "id": 79
+    },
+    "https://express-validator.github.io/docs/check-api.html": {
+        "creationDate": "2021-03-05T23:59:17.502Z",
+        "redirectCount": 0,
+        "originalUrl": "https://express-validator.github.io/docs/check-api.html",
+        "shorturl": "http://localhost:3000/80",
+        "id": 80
     }
 }

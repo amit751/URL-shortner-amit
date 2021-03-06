@@ -4,17 +4,18 @@ const fetch = require('node-fetch');
 const fs = require("fs");
 const cors = require("cors");
 const app = express();
+
 const {onFullfild , readFileFail , readFileSUCSESS } = require("./utils.js");
 const Db = require("./DBclass.js");
 
 
+
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('DB/urls-bin'));///not in use
 app.use(cors()); 
-app.listen( 3000 , ()=>{
-    console.log("listen at 3000");
-});
-app.use(express.json());
+
+const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
 
 const dataBase = new Db;
@@ -23,7 +24,7 @@ const dataBase = new Db;
 app.get ("/:id" , (request , response)=>{
     console.log( "inside get");
     const { id } = request.params;
-    dataBase.readFile(`./DB/urls-bin/short-urls.json`)
+    dataBase.readFile(`${dir}/urls-bin/short-urls.json`)
     .then((data)=>{
         const bin = JSON.parse(data);
         let originalUrl = false;
@@ -37,7 +38,7 @@ app.get ("/:id" , (request , response)=>{
             throw new Error("not found-there is not such url");
         }
         response.redirect(303 , originalUrl); 
-        dataBase.writeFile(`./DB/urls-bin/short-urls.json` ,  JSON.stringify(bin , null, 4))
+        dataBase.writeFile(`${dir}/urls-bin/short-urls.json` ,  JSON.stringify(bin , null, 4))
         .then((result)=>{
             console.log("counter updated sucsesfuly" );
             return;
@@ -61,12 +62,12 @@ app.get ("/:id" , (request , response)=>{
 app.post("/urlshorts" , (req , res)=>{
     const url = req.body.url;
     console.log("nowwwww" , url);
-    dataBase.readFile(`./DB/urls-bin/short-urls.json`)
+    dataBase.readFile(`${dir}/urls-bin/short-urls.json`)
     .then((data)=>{
         return onFullfild(data ,url ,res);
     })
     .catch((err)=>{
-        console.log(err , "in post");
+        console.log(err , "in post wile reading file");
         return res.send(err);
     });
 });
@@ -74,7 +75,7 @@ app.post("/urlshorts" , (req , res)=>{
 
 app.get("/statistic/:id" , (req , res)=>{
     const id = req.params.id;
-    dataBase.readFile(`./DB/urls-bin/short-urls.json`)
+    dataBase.readFile(`${dir}/urls-bin/short-urls.json`)
     .then((data)=>{
         const bin = JSON.parse(data);
         let urlStatistic = false;
@@ -96,8 +97,12 @@ app.get("/statistic/:id" , (req , res)=>{
 
 });
 
+app.listen( 3000 , ()=>{
+    console.log("listen at 3000");
+});
 
-// module.exports = {dataBase};
+
+module.exports = app;
 
 
 

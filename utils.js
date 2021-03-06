@@ -5,7 +5,7 @@ const fs = require("fs");
 const Db = require("./DBclass.js");
 
 const dataBase11 = new Db;
-
+const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
 
 function readFileSUCSESS(counterData , bin , url , res){
@@ -19,9 +19,9 @@ function readFileSUCSESS(counterData , bin , url , res){
         id : newID
     };
     ++newID;
-    dataBase11.writeFile(`./DB/urls-bin/short-urls.json` , JSON.stringify(bin , null, 4))
+    dataBase11.writeFile(`${dir}/urls-bin/short-urls.json` , JSON.stringify(bin , null, 4))
     .then((resultfromurl)=>{
-        dataBase11.writeFile(`./DB/id-genrator.json` , JSON.stringify({counter : newID }))
+        dataBase11.writeFile(`${dir}/id-genrator.json` , JSON.stringify({counter : newID }))
         .then((resultfromcounter)=>{
             return res.json( bin[url]).status(200); //status undifined 
         });//added; 
@@ -48,7 +48,7 @@ function onFullfild(data ,url , res){
     return fetch(url)
     .then((response)=>{
         if(response.ok){
-            dataBase11.readFile(`./DB/id-genrator.json`)
+            dataBase11.readFile(`${dir}/id-genrator.json`)
             .then((counterData)=>{
                 readFileSUCSESS(counterData , bin , url , res);
             } , (err)=>{
@@ -57,12 +57,12 @@ function onFullfild(data ,url , res){
             return;
              
         }else{
-            res.send("invalid website");
+            res.status(200).send("invalid website");
             return;  
         }
     }).catch((e)=>{
         console.log(e , `couldnt fetch to${url}`);
-        return res.send("invalid website");
+        return res.status(200).send("invalid website");/////status
          
     });
 }

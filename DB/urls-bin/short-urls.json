@@ -8,9 +8,24 @@
     },
     "https://stackabuse.com/how-to-use-module-exports-in-node-js/": {
         "creationDate": "6-3-2021  14:31:09",
-        "redirectCount": 1,
+        "redirectCount": 9,
         "originalUrl": "https://stackabuse.com/how-to-use-module-exports-in-node-js/",
         "shorturl": "http://localhost:3000/81",
         "id": 81
+    },
+    "http://localhost:3000/81": {
+        "creationDate": "6-3-2021  21:34:28",
+        "redirectCount": 0,
+        "originalUrl": "http://localhost:3000/81",
+        "shorturl": "http://localhost:3000/82",
+        "id": 82
+    },
+    "https://www.youtube.com/watch?v=OOV1Q4drTqc": {
+        "creationDate": "6-3-2021  21:35:37",
+        "redirectCount": 0,
+        "originalUrl": "https://www.youtube.com/watch?v=OOV1Q4drTqc",
+        "shorturl": "http://localhost:3000/83",
+        "id": 83
     }
+  
 }

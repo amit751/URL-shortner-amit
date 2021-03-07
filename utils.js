@@ -9,7 +9,7 @@ const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
 
 function readFileSUCSESS(counterData , bin , url , res){
-    console.log("here res" );
+    
     let newID = JSON.parse(counterData).counter; 
     bin[url] = {
         creationDate : new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ,
@@ -36,14 +36,18 @@ function readFileFail(err , res){
     return res.send(err);
      
 }
+function isValidURL(string) {
+    var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    return (res !== null)
+};
  
 function onFullfild(data ,url , res){
     const bin = JSON.parse(data);
     if(url in bin){
         res.status(200).send(bin[url].shorturl);
         return;
-    }if(url === false){
-        res.status(200).json({url : `${url} isnot valid` });////////////////
+    }if(!isValidURL(url)){
+        res.status(200).json( [`${url} isnot valid`] );
     }
     return fetch(url)
     .then((response)=>{
@@ -62,10 +66,10 @@ function onFullfild(data ,url , res){
         }
     }).catch((e)=>{
         console.log(e , `couldnt fetch to${url}`);
-        return res.status(200).send(`couldnt fetch to${url}`);/////status
+        return res.status(200).send(`couldnt fetch to${url}`);
          
     });
 }
 
-// `couldnt fetch to${url}`
+
 module.exports = {onFullfild , readFileFail , readFileSUCSESS };

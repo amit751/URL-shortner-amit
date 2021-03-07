@@ -63,7 +63,7 @@ app.get ("/:id" , (request , response)=>{
 ///add a chek - not to short a short url
 app.post("/urlshorts" , (req , res)=>{
     const url = req.body.url;
-    console.log("nowwwww" , url);
+    
     dataBase.readFile(`${dir}/urls-bin/short-urls.json`)
     .then((data)=>{
         return onFullfild(data ,url ,res);

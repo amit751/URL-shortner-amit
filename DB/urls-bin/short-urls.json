@@ -1,18 +1,6 @@
 {
-    "https://www.youtube.com/watch?v=vtsvokdIqwY": {
-        "creationDate": "2021-03-05T18:21:38.099Z",
-        "redirectCount": 5,
-        "originalUrl": "https://www.youtube.com/watch?v=vtsvokdIqwY",
-        "shorturl": "http://localhost:3000/67",
-        "id": 67
-    },
-    "http://localhost:3000/81": {
-        "creationDate": "6-3-2021  21:34:28",
-        "redirectCount": 0,
-        "originalUrl": "http://localhost:3000/81",
-        "shorturl": "http://localhost:3000/82",
-        "id": 82
-    },
+   
+   
     "https://www.youtube.com/watch?v=OOV1Q4drTqc": {
         "creationDate": "6-3-2021  21:35:37",
         "redirectCount": 1,

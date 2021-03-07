@@ -33,9 +33,12 @@ function showSTATISTIC(data){
     let tableRow = document.createElement("tr");
     table.append(tableRow);
     for (const prop in urlsArrey[0]) {
-    let tableHead = document.createElement("th");
-    tableHead.textContent = prop;
-    tableRow.append(tableHead);
+        if(prop!== "id"){
+            let tableHead = document.createElement("th");
+            tableHead.textContent = prop;
+            tableRow.append(tableHead);
+
+        }
     }
     
     //function for adding a singel row + adding classes to properties i want to change their color.
@@ -44,9 +47,12 @@ function showSTATISTIC(data){
         table.append(tableRow);
         
         for (const prop in object) {
-            let tableSection = document.createElement("td");
-            tableSection.textContent= object[prop];
-            tableRow.append(tableSection);
+            if(prop!== "id"){
+
+                let tableSection = document.createElement("td");
+                tableSection.textContent= object[prop];
+                tableRow.append(tableSection);
+            }
     
 
         }

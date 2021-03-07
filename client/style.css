@@ -1,7 +1,9 @@
 fieldset{
    
-    background-color: rgb(46, 1, 46);
-    border: rgb(10, 111, 243) solid;
+    background-color: rgb(40, 233, 82);
+    border: solid rgb(10, 111, 243) ;
+    padding: 5px;
+    border-radius: 10px;
     color: white;
     text-align: center;
     height: 300px;
@@ -15,7 +17,7 @@ fieldset{
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #561ae2;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
@@ -24,7 +26,7 @@ fieldset{
   #submit-button:hover {background-color: #3e8e41}
   
   #submit-button:active {
-    background-color: #3e8e41;
+    background-color: #4f2ee4;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -38,4 +40,25 @@ fieldset{
 #url_input{
     width: 500px;
     height: 50px;
+}
+
+table{
+    text-align: center;
+    width: 50%;
+    height: 70%;
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    border: rgb(33, 3, 202) solid;
+    border-radius: 40px; 
+    padding: 25px;
+    background-color: white;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: larger;
+   
+    width: max-content;
+}
+body{
+    
+    text-align: center;
 }

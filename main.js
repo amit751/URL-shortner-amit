@@ -12,10 +12,10 @@ const Db = require("./DBclass.js");
 // app.set("view engine" , "html");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static('DB/urls-bin'));///not in use
+// app.use(express.static('DB/urls-bin'));///not in use
 app.use(cors()); 
 // app.use('/public', express.static(`./public`));
-app.use(express.static('client'));
+app.use(express.static('./client'));
 
 const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 

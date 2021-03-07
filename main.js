@@ -14,6 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('DB/urls-bin'));///not in use
 app.use(cors()); 
+// app.use('/public', express.static(`./public`));
+app.use(express.static('client'));
 
 const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
@@ -24,9 +26,9 @@ const dataBase = new Db;
 // app.get("/" ,(request , response)=>{
 //     response.render("index");
 // })
-// app.get("/", (req, res) => {
-//     res.sendFile(__dirname + "/client/index.html");
-//   });
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/client/index.html");
+  });
 
 app.get ("/:id" , (request , response)=>{
     console.log( "inside get");

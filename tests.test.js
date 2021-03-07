@@ -15,7 +15,7 @@ describe( "post method" ,  ()=>{
       expect(response.text).toEqual("http://localhost:3000/81");
         
     });
-    test("invalid url-there is no such website" , async ()=>{
+    test("invalid adress there is no such website" , async ()=>{
         const response = await request.post("/urlshorts")
         .send({url: "https://stackabuse.com/33333ports-in-node556/32f" })
         .type("form");
@@ -37,6 +37,16 @@ describe( "post method" ,  ()=>{
         
         
     });
+    test("invalid url" , async ()=>{
+        const response = await request.post("/urlshorts")
+        .send({url: "https://www.yout4536tgm/33333?v=vtsvokdIqwY" })
+        .type("form");
+        expect(response.status).toEqual(200);
+        expect(response.text).toEqual("[\"https://www.yout4536tgm/33333?v=vtsvokdIqwY isnot valid\"]");  
+        
+        
+    });
+
       
 });
 

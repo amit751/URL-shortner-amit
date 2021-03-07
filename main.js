@@ -9,7 +9,7 @@ const {onFullfild , readFileFail , readFileSUCSESS } = require("./utils.js");
 const Db = require("./DBclass.js");
 
 
-
+// app.set("view engine" , "html");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('DB/urls-bin'));///not in use
@@ -20,6 +20,13 @@ const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
 const dataBase = new Db;
 
+
+// app.get("/" ,(request , response)=>{
+//     response.render("index");
+// })
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + "/client/index.html");
+//   });
 
 app.get ("/:id" , (request , response)=>{
     console.log( "inside get");
@@ -70,7 +77,8 @@ app.post("/urlshorts" , (req , res)=>{
     })
     .catch((err)=>{
         console.log(err , "in post wile reading file");
-        return res.send(err);
+        // return res.send(err);
+        return;
     });
 });
 
@@ -111,8 +119,9 @@ app.get("/all/statistic" , (req , res)=>{
     })
 });
 
+const PORT = process.env.PORT || 3000
 app.listen( 3000 , ()=>{
-    console.log("listen at 3000");
+    console.log(`listen at 3000`);
 });
 
 

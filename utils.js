@@ -43,7 +43,7 @@ function onFullfild(data ,url , res){
         res.status(200).send(bin[url].shorturl);
         return;
     }if(url === false){
-        res.status(200).json({url : `${url} isnot valid` });
+        res.status(200).json({url : `${url} isnot valid` });////////////////
     }
     return fetch(url)
     .then((response)=>{

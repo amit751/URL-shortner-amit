@@ -4,6 +4,8 @@ const request = supertest(app);
 const { test, expect } = require("@jest/globals");
 const fs = require("fs");
 
+let counterBEFORE =0;
+
 describe( "post method" ,  ()=>{
     test("shorturl already exist in the database" , async ()=>{
       const response = await request.post("/urlshorts")
@@ -26,8 +28,6 @@ describe( "post method" ,  ()=>{
         const response = await request.post("/urlshorts")
         .send({url: "https://www.youtube.com/watch?v=iYYRH4apXDo" })
         .type("form");
-        // const currentid = JSON.parse(fs.readFileSync("./DB-TEST/id-genrator.json")).counter;
-        // const nextID = currentid-1;
         let currentBin = JSON.parse(fs.readFileSync("./DB-TEST/urls-bin/short-urls.json"));
         const expected = currentBin["https://www.youtube.com/watch?v=iYYRH4apXDo"]
         delete currentBin["https://www.youtube.com/watch?v=iYYRH4apXDo"];
@@ -40,93 +40,54 @@ describe( "post method" ,  ()=>{
       
 });
 
+describe("get method to /:id - shorturl request" ,  ()=>{
+    test("there is no short url with the id that provided" , async ()=>{
+        const response = await request.get("/0");
+        expect(response.status).toEqual(400);
+        expect(response.text).toEqual("not found-there is not such url");
+    });
+    test("request to short url => shuld redirect " , async ()=>{
+        const response = await request.get("/84");
+        expect(response.status).toEqual(303);
+        
+    });
+});
 
-// it("Should save user to the database", async () => {
-//     const res = await request(app).post('/api/shorturl/new')
-//     .send({
-//       url: "https://stackabuse.com/how-to-use-module-exports-in-node-js/"
-//     })
-//     .type('form'); // other wise it gets to the server as an empty object
-//       expect(res.status).toBe(200);
-//     //   expect(response.body).toEqual("http://localhost:3000/81");
-// }); 
-
-
-
-
-// t('Should save user to database', async done => {
-//     const res = await request.post('/signup')
-//       .send({
-//         name: 'Zell',
-//         email: 'testing@gmail.com'
-//       })
-//     done()
-//   })
+describe("get statistics" , ()=>{
+    test("there is no statistic => short url doesnt exist" , async ()=>{
+        const response = await request.get("/statistic/0");
+        expect(response.status).toEqual(200);
+        expect(response.text).toEqual("not found-there is no such url");
+    });
 
 
-
-// it('gets the test endpoint', async done => {
-//     const response = await request.get('/test')
-  
-//     expect(response.status).toBe(200)
-//     expect(response.body.message).toBe('pass!')
-//     done()
-//   })
-
-// detectOpenHandles
-
-
-
-
-
-
-// describe("PUT REQUEST", () => {
-  
-//     // PUT
-  
-//     const requestBody = {
-//       "my-todo": [
-//           {
-//               "priority": "3",
-//               "date": "2021-02-23T01:53:19.792Z",
-//               "text": "Putin is a friend of Stalin, and they all just a PUT massage",
-//               "id": "riHLRh"
-//           }
-//       ]
-//     };
+    test("should get statistic of the url " , async ()=>{
+        const response = await request.get("/statistic/84");
+        const bin = JSON.parse(fs.readFileSync("./DB-TEST/urls-bin/short-urls.json"));
+        const urlObj = bin["https://www.youtube.com/watch?v=OOV1Q4drTqcgfthytrh"];
+        const redirectCountBefore = urlObj["redirectCount"]; //////
+        counterBEFORE = redirectCountBefore;/////////////
+        expect(response.status).toEqual(200);
+        expect(response.body).toEqual(urlObj);
+    });
     
-//     const options = {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(requestBody),
-//     };
-    
-//     test("can update a bin by id", async ()=>{
-//       const response = await request(app).put('/b/3').send(options);
-//       expect(response.body.record).toEqual(true);
-//       expect(response.body['metadata']['id']).toEqual("3");
-//     });
-    
-//     test("no new bin is created when updating", async () => {
-//       let lengthBeforeRequest = fs.readdirSync("./server/db/bins").length;
-      
-//       await request(app).put('/b/3').send(options);
-//       let lengthAfterRequest = fs.readdirSync("./server/db/bins").length;
-//       expect(lengthAfterRequest).toBe(lengthBeforeRequest);
-      
-//     });
-    
-//     test("should reject illegal id appropriate response", async ()=>{
-//       const response = await request(app).put('/b/re').send(options);
-      
-//       expect(`status:${response.status}, message:${response.text}`).toEqual("status:400, message:Bad Request - Invalid Bin Id provided");
-//     });
-    
-//     test("should send an appropriate response if such bin not found", async ()=>{
-//       const response = await request(app).put('/b/-1').send(options);
-      
-//       expect(`status:${response.status}, message:${response.text}`).toEqual("status:404, message:Not Found - Bin not found");
-//     });
-//   });
+    test("redirectCount encres" , async ()=>{
+       
+        console.log(counterBEFORE , "global counter!");
+        const binbefore = JSON.parse(fs.readFileSync("./DB-TEST/urls-bin/short-urls.json"));
+        const urlObjbefore = binbefore["https://www.youtube.com/watch?v=OOV1Q4drTqcgfthytrh"]; 
+        const redirectCount1 = urlObjbefore["redirectCount"];
+        await request.get("/84");
+        const binAfter = JSON.parse(fs.readFileSync("./DB-TEST/urls-bin/short-urls.json" ));
+        
+        const urlObjAfter = binAfter["https://www.youtube.com/watch?v=OOV1Q4drTqcgfthytrh"]; 
+        const redirectCountAfter = urlObjAfter["redirectCount"];
+        expect(++counterBEFORE).toEqual(redirectCountAfter);
+       
+    });
+});
+
+
+
+
+

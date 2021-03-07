@@ -35,7 +35,8 @@ app.get ("/:id" , (request , response)=>{
               urlPROP.redirectCount++ ; 
             }
         }if(!originalUrl){
-            throw new Error("not found-there is not such url");
+           return response.status(400).send("not found-there is not such url");
+            // throw new Error("not found-there is not such url");/////////can remove
         }
         response.redirect(303 , originalUrl); 
         dataBase.writeFile(`${dir}/urls-bin/short-urls.json` ,  JSON.stringify(bin , null, 4))
@@ -49,8 +50,9 @@ app.get ("/:id" , (request , response)=>{
 
     })
     .catch((err)=>{
-        res.json(err);
-        return;
+        console.log("failed to read file from db ," , err );
+        return response.status(202).send("failed to read file from db , err acured");
+        // return;
     });
 
     return;
@@ -86,13 +88,13 @@ app.get("/statistic/:id" , (req , res)=>{
             }
         }if(!urlStatistic){
             console.log("there is no such short url in db");
-            res.status(200).send("not found-there is not such url");
+           return res.status(200).send("not found-there is no such url");
         }
         return res.status(200).json(urlStatistic);
        
     }).catch((err)=>{
-        console.log("couldnt read data from db");
-        return res.status(200).send(err , "couldnt read data from db");
+        console.log("couldnt read data from db" , err);
+        return res.status(200).send("couldnt read data from db");
     });
 
 });

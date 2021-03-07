@@ -7,7 +7,7 @@ const Db = require("./DBclass.js");
 const dataBase11 = new Db;
 const  dir = process.env.NODE_ENV === 'test' ? './DB-TEST' : './DB';
 
-
+///
 function readFileSUCSESS(counterData , bin , url , res){
     
     let newID = JSON.parse(counterData).counter; 

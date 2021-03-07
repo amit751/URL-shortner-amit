@@ -58,6 +58,7 @@ describe("get statistics" , ()=>{
         const response = await request.get("/statistic/0");
         expect(response.status).toEqual(200);
         expect(response.text).toEqual("not found-there is no such url");
+        
     });
 
 
@@ -69,6 +70,7 @@ describe("get statistics" , ()=>{
         counterBEFORE = redirectCountBefore;/////////////
         expect(response.status).toEqual(200);
         expect(response.body).toEqual(urlObj);
+         
     });
     
     test("redirectCount encres" , async ()=>{
@@ -83,6 +85,7 @@ describe("get statistics" , ()=>{
         const urlObjAfter = binAfter["https://www.youtube.com/watch?v=OOV1Q4drTqcgfthytrh"]; 
         const redirectCountAfter = urlObjAfter["redirectCount"];
         expect(++counterBEFORE).toEqual(redirectCountAfter);
+         
        
     });
 });

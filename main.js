@@ -60,7 +60,7 @@ app.get ("/:id" , (request , response)=>{
 });
 
 
-
+///add a chek - not to short a short url
 app.post("/urlshorts" , (req , res)=>{
     const url = req.body.url;
     console.log("nowwwww" , url);
@@ -99,77 +99,21 @@ app.get("/statistic/:id" , (req , res)=>{
 
 });
 
+app.get("/all/statistic" , (req , res)=>{
+    console.log("im here");
+    dataBase.readFile(`${dir}/urls-bin/short-urls.json`)
+    .then((data)=>{
+        const bin = JSON.parse(data);
+        return res.status(200).json(bin); 
+    }).catch((err)=>{
+        console.log("couldnt read data from db" , err);
+        return res.status(200).send("couldnt read data from db"); 
+    })
+});
+
 app.listen( 3000 , ()=>{
     console.log("listen at 3000");
 });
 
 
 module.exports = app;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.post("/urlshorts" , (req , res)=>{
-//     const url = req.body.url;
-//     console.log("nowwwww" , url);
-    
-//     const bin = JSON.parse(fs.readFileSync(`./DB/urls-bin/short-urls.json`));
-//     if(url in bin){
-//         console.log("short exist");
-//         res.send(bin[url].shorturl).status(200);
-//         return;
-//     }if(url === false){
-//         res.json({url : `${url} isnot valid` }).status(200);
-//     }
-//    return fetch(url).then((response)=>{
-//         if(response.ok){
-//             // console.log(response);
-//             let newID = JSON.parse(fs.readFileSync(`./DB/id-genrator.json`)).counter;
-//             // console.log(newID);
-//             bin[url] = {
-//                 creationDate : new Date() ,
-//                 redirectCount :  0 ,
-//                 originalUrl : url,
-//                 shorturl : `http://localhost:3000/${newID}` ,
-//                 id : newID
-//             };
-//             ++newID;
-//             // console.log(newID);
-//             fs.writeFileSync(`./DB/urls-bin/short-urls.json` , JSON.stringify(bin , null, 4));
-//             fs.writeFileSync(`./DB/id-genrator.json` , JSON.stringify({counter : newID }));
-//             res.status(200).json( bin[url]);
-//             console.log("end post");
-//             return;
-            
-//         }else{
-//             // console.log(response);
-//           res.send("invalid website");
-//           return;  
-//         }
-//     });
-    
-// });
-
-
-
-
-
-// dataBase.writeFile(`./DB/urls-bin/test.json`, JSON.stringify({data: "test"} , null, 4)).then((result)=>{
-//     if (result){
-//         dataBase.readFile(`./DB/urls-bin/test.json`).then((data)=>{console.log(data);});
-//     }
-// });
-

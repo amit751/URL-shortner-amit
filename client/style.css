@@ -1,0 +1,41 @@
+fieldset{
+   
+    background-color: rgb(46, 1, 46);
+    border: rgb(10, 111, 243) solid;
+    color: white;
+    text-align: center;
+    height: 300px;
+}
+#submit-button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+  
+  #submit-button:hover {background-color: #3e8e41}
+  
+  #submit-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+#statistic-button{
+    display: block;
+    margin: auto;
+    background-color: rgb(11, 173, 106);
+    font-style: italic;
+    font-size: x-large;
+}
+#url_input{
+    width: 500px;
+    height: 50px;
+}

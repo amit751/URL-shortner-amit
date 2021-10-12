@@ -1,4 +1,4 @@
-<h1>Submition on Submition branch</h1>
+<h1>submission on submission branch</h1>
 
 
 # ![Scale-Up Velocity](./readme-files/logo-main.png) Final 1 - URL shortner 📎
